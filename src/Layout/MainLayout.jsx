@@ -1,5 +1,5 @@
-// import Header from "./Header/Index";
-// import Footer from "./Footer";
+import { Header } from "../components/Header/index";
+import { Footer } from "../components/Footer/index";
 
 export default function MainLayout({ children }) {
   return (

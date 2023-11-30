@@ -1,23 +1,27 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import pokeIcon from '/156059.svg'
 import './App.css'
 import { Routes, Route } from "react-router-dom";
 import MainLayout from './Layout/MainLayout';
 import  PokemonList  from './Pages/PokemonList';
+import  Home  from "./Pages/Home";
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* <MainLayout> */}
+      <MainLayout>
         <Routes>
-          <Route path="/" element={<PokemonList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/pokemonList" element={<PokemonList />} />
+          {/* <Route path="/fight" element={<Fight />} />
+          <Route path="/leaderboard" element={<Leaderboard />} /> */}
           {/* <Route path="/pokemon/:id" element={<PokemonDetail />} />
           <Route path="/pokemon/:id/:info" element={<PokemonSuperDetail />} /> */}
         </Routes>
-      {/* </MainLayout> */}
+      </MainLayout>
     </>
   )
 }

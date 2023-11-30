@@ -36,11 +36,42 @@ const [pokemonList, setPokemonList] = useState()
         <Head> 
         <title>Pokemon Liste</title>
         </Head>
-        {pokemonList?.map((pokemon, id) =>
-        (<p key={id}>{pokemon.name.french}</p>
+        <h1>Pokedex</h1>
+        <div className="pokedexContainer">
 
+        <div>
+        <h2>Filters</h2>
+        <ul className="pokeFilter">
+        <li>Bug</li>
+        <li>Electric</li>
+        <li>Fire</li>
+        <li>Grass</li>
+        <li>Normal</li>
+        <li>Rock</li>
+        <li>Dark</li>
+        <li>Fairy</li>
+        <li>Flying</li>
+        <li>Ground</li>
+        <li>Poison</li>
+        <li>Steel</li>
+        <li>Dragon</li>
+        <li>Fighting</li>
+        <li>Ghost</li>
+        <li>Ice</li>
+        <li>Psychic</li>
+        <li>Water</li>
+        </ul>
+        </div>
+        
+        
+        <div className="pokemonGrid">
+        {pokemonList?.map((pokemon, id) =>
+        (<ul className="pokeFilter" key={id}><li>{pokemon.name.french}</li></ul>
         ))}
-    </div>
+        </div>
+
+        </div>  
+        </div>
         )
         }
 
