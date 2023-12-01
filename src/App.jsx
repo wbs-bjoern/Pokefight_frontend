@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import pokeIcon from '/156059.svg'
+import pokeIcon from '/pokeball.png'
 import './App.css'
 import { Routes, Route } from "react-router-dom";
 import MainLayout from './Layout/MainLayout';
