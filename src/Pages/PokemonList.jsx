@@ -3,32 +3,35 @@ import Head from "../components/Head";
 
 const PokemonList = () => {
 
-const [pokemonList, setPokemonList] = useState()
-  
+const [pokemonList, setPokemonList] = useState([])
+const [lastId, setLastId] = useState(1);
+const [isLoading, setIsLoading] = useState(true);
 //   Fetch JSON Pokemon-Liste vom Backend
 
   useEffect(() => {
-    fetch("https://pokefight-backend-x2r5.onrender.com/pokemon/")
-    // .then(
-      // response => response.json())
-      // .then(
-      //   data => {
-      //     setBackend(data)
-      //   }
-      // )
-      .then(response => {
+    const fetchData = async () => {
+    setIsLoading(true);
+   try {
+     const response = await fetch(`https://pokefight-backend-x2r5.onrender.com/pokemon?limit=10&offset=${lastId}`)
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
-      })
-      .then(data =>  {
+        const data = await response.json();
         console.log(data);
-          setPokemonList(data);
-          })
-      .catch(error => console.error('There has been a problem with your fetch operation: ', error));
-  
-  }, []);
+        setPokemonList(prevList => [...prevList, ...data]);
+        setLastId(data[data.length - 1].id);
+        } catch (error) { 
+          console.error ('There has been a problem with your fetch operation: ', error);
+        } finally {
+         setIsLoading(false);
+        }
+      };
+fetchData();
+}, [lastId]);
+
+  const handlePageChange = () => {
+    setPage(prevId => prevId + 10);
+  };
 
   return (
     
@@ -63,14 +66,23 @@ const [pokemonList, setPokemonList] = useState()
         </ul>
         </div>
         
-        
+        {/* <img src={pokemon.sprites.front_default} /> */}
         <div className="pokemonGrid">
-        {pokemonList?.map((pokemon, id) =>
-        (<ul className="pokeFilter" key={id}><li>{pokemon.name.french}</li></ul>
+        { isLoading ? (
+          <div>Loading...</div>
+          ) : (
+          pokemonList?.map((pokemon, id) =>
+          (<ul className="pokeFilter" key={id}>
+          <li>{pokemon.name.french}
+          </li>
+          <li>{pokemon.base.HP}</li>
+          {pokemon.sprites && <img src={pokemon.sprites.front_default} />}
+        </ul>)
         ))}
         </div>
 
         </div>  
+        <button style={{color: "black"}} onClick={handlePageChange}>Page 2</button>
         </div>
         )
         }
