@@ -4,14 +4,39 @@ import  { useState } from "react";
 function PopupForm({ onNameChange }) {
     const [isOpen, setIsOpen] = useState(true);
     const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
       // Hier können Sie den Namen an Ihre Backend-API senden
       console.log("name", name)
       onNameChange(name)
+      fetch('/auth/login', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify({ name, password }),
+      })
+      .then(response => {
+       if (!response.ok) {
+         throw new Error(`HTTP error! status: ${response.status}`);
+       }
+       return response.json();
+      })
+      .then(data => {
+       // Benutzer wurde erfolgreich authentifiziert
+       console.log("Success");
+       console.log(data);
+       
+      })
+      .catch(error => {
+       // Es gab einen Fehler bei der Authentifizierung
+       console.log("Error");
+       console.log(error);
+      });
       setIsOpen(false);
-    };
+      };
 
     
 
@@ -35,6 +60,13 @@ function PopupForm({ onNameChange }) {
                 onChange={e => setName(e.target.value)}
                 required
               />
+               <input
+                className="text-4xl border border-gray-400 p-6 w-full rounded-lg"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+     />
             </div>
             <button
               className="w-full text-2xl bg-blue-500 text-white p-5 rounded-3xl hover:bg-blue-600"
