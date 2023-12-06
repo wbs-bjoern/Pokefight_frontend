@@ -42,12 +42,17 @@
 }
 
 .pokemonGrid {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-
+.button-container {
+  position: absolute;
+  top: -35px;
+  right: 0;
+ }
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

@@ -11,7 +11,7 @@ function PopupForm({ onNameChange }) {
       // Hier können Sie den Namen an Ihre Backend-API senden
       console.log("name", name)
       onNameChange(name)
-      fetch('/auth/login', {
+      fetch('https://pokefight-backend-x2r5.onrender.com/auth/login', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
