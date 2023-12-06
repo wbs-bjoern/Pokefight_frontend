@@ -3,20 +3,22 @@ import  { useState } from "react";
 
 function PopupForm({ onNameChange }) {
     const [isOpen, setIsOpen] = useState(true);
-    const [name, setName] = useState('');
+    const [username, setName] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = async (event) => {
       event.preventDefault();
       // Hier können Sie den Namen an Ihre Backend-API senden
-      console.log("name", name)
-      onNameChange(name)
+      
+      console.log("name", username)
+      onNameChange(username)
+
       fetch('https://pokefight-backend-x2r5.onrender.com/auth/login', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
        },
-       body: JSON.stringify({ name, password }),
+       body: JSON.stringify({ username, password }),
       })
       .then(response => {
        if (!response.ok) {
@@ -56,7 +58,7 @@ function PopupForm({ onNameChange }) {
                 id="name"
                 name="name"
                 type="text"
-                value={name}
+                value={username}
                 onChange={e => setName(e.target.value)}
                 required
               />
