@@ -7,9 +7,10 @@ const Fight = () => {
 
 const [ spieler, setSpieler ] = useState()
 const [ randomPokemon, setRandomPokemon ] = useState ([])
+const [isLoading, setIsLoading] = useState(true);
 
 
-    // const randomPokemon = 
+
  
 // Fetching Spieler 
     // useEffect(() => {
@@ -68,8 +69,9 @@ const [ randomPokemon, setRandomPokemon ] = useState ([])
         <div className="flex">
             <div className="flex grow justify-center">Spieler</div>
             <div className="flex grow justify-center">Gamemechanism</div>
-            <div className="flex grow justify-center"><h2>{choosingRandomPokemon.name}</h2>
-            <img src={choosingRandomPokemon.sprites.other.home.front_default} alt={choosingRandomPokemon.name} /></div>
+            <div className="flex grow justify-center">{choosingRandomPokemon && <h2>{choosingRandomPokemon.name}</h2>}
+            {/* <img src={choosingRandomPokemon.sprites.other.home.front_default} alt={choosingRandomPokemon.name} /> */}
+            </div>
         </div>
     )
 

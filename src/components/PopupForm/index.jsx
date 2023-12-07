@@ -17,8 +17,8 @@ function PopupForm({ onNameChange }) {
       console.log("name", username)
       onNameChange(username)
 
-      const baseURL = "http://localhost:8080/";
-      //const baseURL = "https://pokefight-backend-x2r5.onrender.com/";
+      // const baseURL = "http://localhost:8080/";
+      const baseURL = "https://pokefight-backend-x2r5.onrender.com/";
 
       fetch(baseURL + 'auth/login', {
        method: 'POST',

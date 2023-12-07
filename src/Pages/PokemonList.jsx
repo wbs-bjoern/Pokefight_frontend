@@ -11,7 +11,6 @@ const [pokemonList, setPokemonList] = useState([])
 // const [lastId, setLastId] = useState(1);
 const [page, setPage] = useState(0);
 const [isLoading, setIsLoading] = useState(true);
-// const [filter, setFilter] = useState(['Bug','Grass', 'Poison', 'Fire', 'Grass', 'Normal', 'Rock', 'Dark', 'Fairy', 'Flying', 'Ground', 'Poison', 'Steel', 'Dragon', 'Fighting', 'Ghost', 'Ice', 'Psychic', 'Water']);
 const [filter, setFilter] = useState('');
 // const [showBackButton, setShowBackButton] = useState(false);
 
