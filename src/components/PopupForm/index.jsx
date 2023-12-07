@@ -1,10 +1,14 @@
-import  { useState } from "react";
+import  { useState,useContext } from "react";
+import { AuthContext } from "../../App";
 
 
 function PopupForm({ onNameChange }) {
     const [isOpen, setIsOpen] = useState(true);
     const [username, setName] = useState('');
     const [password, setPassword] = useState('');
+    const { authToken, setAuthToken} = useContext(AuthContext)
+
+
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -13,7 +17,10 @@ function PopupForm({ onNameChange }) {
       console.log("name", username)
       onNameChange(username)
 
-      fetch('https://pokefight-backend-x2r5.onrender.com/auth/login', {
+      const baseURL = "http://localhost:8080/";
+      //const baseURL = "https://pokefight-backend-x2r5.onrender.com/";
+
+      fetch(baseURL + 'auth/login', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json',
@@ -28,6 +35,11 @@ function PopupForm({ onNameChange }) {
       })
       .then(data => {
        // Benutzer wurde erfolgreich authentifiziert
+       if(data.login_token)
+       {
+        console.log("Token found :", data.login_token)
+        setAuthToken(data.login_token)
+       }
        console.log("Success");
        console.log(data);
        
