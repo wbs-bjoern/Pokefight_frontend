@@ -50,9 +50,6 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
   // }, [lastId]);
 }, []);
 
-  // useEffect(() => {
-  //   setFilter('');
-  //  }, ['Bug','Grass', 'Poison', 'Fire', 'Grass', 'Normal', 'Rock', 'Dark', 'Fairy', 'Flying', 'Ground', 'Poison', 'Steel', 'Dragon', 'Fighting', 'Ghost', 'Ice', 'Psychic', 'Water']);
 
   // const handlePageChange = () => {
   //   setPage(prevId => prevId + 10);
@@ -64,7 +61,6 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
 
   const filteredPokemonList = pokemonList.filter(pokemon => {
     // Filter the Pokemons based on the current filter
-    // This is just a placeholder. Replace it with your actual filter logic.
     if (filter === '') {
       return true;
     }
@@ -80,7 +76,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
         <title>Pokedex</title>
         </Head>
         
-        <div className="pokedexContainer flex-wrap gap-10">
+        <div className="lg:flex flex-wrap gap-10">
 
         <div>
         <h1 className="pb-4">Pokedex</h1>
@@ -100,7 +96,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
                         )} */}
         </div> 
         <hr className="pb-5" />
-        <ul className="text-2xl grid grid-cols-3 gap-6 ">
+        <ul className="text-2xl grid grid-cols-3 w-full gap-6 ">
         <a className=" hover:text-yellow-100 focus:text-yellow-300 focus:font-bold hover:font-bold" href="#" onClick={() => handleFilterChange('Bug')}>Bug</a>
         <a className=" hover:text-yellow-100 focus:text-yellow-300 focus:font-bold hover:font-bold" href="#"  onClick={() => handleFilterChange('Electric')}>Electric</a>
         <a className=" hover:text-yellow-100 focus:text-yellow-300 focus:font-bold hover:font-bold" href="#" onClick={() => handleFilterChange('Fire')}>Fire</a>
@@ -124,7 +120,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
         </div>
         
         
-        <div className="pokemonGrid">
+        <div className="pokemonGrid grid grid-cols-1 grow md:grid-cols-3 mt-20 gap-4">
         <div className="button-container"> 
         {page > 0 && <button className="text-lg text-white bg-black bg-opacity-60 border-white mr-2" onClick={() => setPage(page - 1)}>Back</button>}
         {page < totalPages - 1 && <button className="text-lg text-white bg-black bg-opacity-60 border-white" onClick={() => setPage(page + 1)}>Next</button>}

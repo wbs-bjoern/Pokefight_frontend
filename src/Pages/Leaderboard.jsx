@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from '../components/Head';
 
 const Leaderboard = () => {
  const [data, setData] = useState([]);
@@ -13,7 +14,11 @@ const Leaderboard = () => {
  }, []);
 
  return (
+   
    <ol className='text-left'>
+     <Head> 
+        <title>Leaderboard</title>
+        </Head>
      {data.map((item, index) => (
        <li className='mb-3 text-3xl border border-gray-400 p-3 rounded-lg' key={index}>
          {index + 1}. {item.username} - {item.wins} wins
