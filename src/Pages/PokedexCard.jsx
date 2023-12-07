@@ -57,14 +57,13 @@ const PokemonCard = () => {
      };
     
       return (
-           
+       
         <div>
-           
-           <Head> 
-            {/* <title>{pokemonList.id} {pokemonList.name.french}</title> */}
-            Hallo
-            </Head> 
-
+            {/* <Head> 
+          <title>{pokemonList.name.english}  </title>
+          
+          </Head>  */}
+        
             <div className="pokedexContainer w-full gap-10">
     
             
@@ -74,7 +73,7 @@ const PokemonCard = () => {
             ) : (
             <div className="text-3xl border border-gray-400 p-3 rounded-lg">
             
-            <h1 className="mb-4 text-8xl md:text-12xl">{pokemonList.name.french}</h1>
+            <h1 className="mb-4 text-8xl md:text-12xl">{pokemonList.name.english}</h1>
             <div className="flex flex-wrap gap-20 sm">
               <div className="">
                   <ul className=" md:text-left  ">
@@ -85,21 +84,21 @@ const PokemonCard = () => {
                     <li>Sp. Defense: {pokemonList.base['Sp. Defense']}</li>
                     <li>Speed: {pokemonList.base.Speed}</li>
                   </ul>
-                  <div className="flex flex-wrap justify-center items-center h-full mb-40">
+                  <div className="flex flex-wrap justify-start items-center mt-40">
                     
                     <button style={{color: "black"}} onClick={() => navigate(-1)}>Back</button>
-                    <div>
+                    
                    
                     <button style={{color: "black"}} onClick={() => handlePokemonClick(pokemonList)}>
                           Select Pokemon
                         </button>
                         <button style={{color: "black"}} onClick={() => handlePokemonClick2()}>
                           Show Pokemon
-                        </button>
+                        </button><div>
                         {showPopup && selectedPokemon && (
                         <div className="fixed inset-0  bg-gray-900 opacity-70 z-50 flex-col items-center justify-center w-85 h-80">
                           <h2 className="mb-5"> Selected Pokemon </h2>
-                          {selectedPokemon.name.french}
+                          {selectedPokemon.name.english}
                           <div className="flex justify-center h-40">{selectedPokemon.sprites && <img src={selectedPokemon.sprites.other.home.front_default} />}</div>
                           
                         
@@ -124,7 +123,6 @@ const PokemonCard = () => {
                     {pokemonList.sprites && <img src={pokemonList.sprites.other.home.front_default} />}
               </div>
             </div>
-            {/* <div>{pokemonList.type}</div> */}
             
             </div>
             </div>

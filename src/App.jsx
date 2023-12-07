@@ -7,6 +7,7 @@ import  PokemonList  from './Pages/PokemonList';
 import PokemonCard from './Pages/PokedexCard';
 import  Home  from "./Pages/Home";
 import Fight from "./Pages/Fight";
+import Leaderboard from './Pages/Leaderboard';
 
 export const AuthContext = createContext({authToken: null, setAuthToken: ()=>{}});
 
@@ -26,7 +27,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/pokemonList" element={<PokemonList />} />
           <Route path="/fight" element={<Fight />} />
-          {/* <Route path="/leaderboard" element={<Leaderboard />} /> */} 
+          <Route path="/leaderboard" element={<Leaderboard />} /> 
           <Route path="/pokemon/:id" element={<PokemonCard />} />
           {/* <Route path="/pokemon/:id/:info" element={<PokemonSuperDetail />} /> */} 
         </Routes>

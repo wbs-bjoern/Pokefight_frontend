@@ -77,7 +77,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
     
     <div>
         <Head> 
-        <title>Pokemon Liste</title>
+        <title>Pokedex</title>
         </Head>
         
         <div className="pokedexContainer flex-wrap gap-10">
@@ -134,7 +134,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
           <div>Loading...</div>
           ) : (
             pokemonsForCurrentPage?.map((pokemon, id) =>
-          (<a href={`/pokemon/${pokemon.id}`}><ul className="text-3xl border border-gray-400 p-3 rounded-lg" key={id}>
+          (<a key={id} href={`/pokemon/${pokemon.id}`}><ul className="text-3xl border border-gray-400 p-3 rounded-lg" >
           <li>#{pokemon.id}</li>
           <li>{pokemon.name.english}</li>
           <div className="flex justify-center">{pokemon.sprites && <img src={pokemon.sprites.front_default} />}</div>
