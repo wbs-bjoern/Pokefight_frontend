@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import Head from "../components/Head";
+import { AuthContext } from "../App";
 
-
+      const baseURL = "http://localhost:8080/";
+      //const baseURL = "https://pokefight-backend-x2r5.onrender.com/";
 
 const Fight = () => {
+
+const {authToken} = useContext(AuthContext)
+console.log("AuthToken:", authToken)
 
 const [ spieler, setSpieler ] = useState()
 const [ randomPokemon, setRandomPokemon ] = useState ([])
@@ -55,7 +60,33 @@ const [isLoading, setIsLoading] = useState(true);
              setIsLoading(false);
             }
           };
+          const fetchUserData = async ()=>
+          {
+
+            try{
+              const response = await fetch(baseURL + "user",{
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ login_token: authToken }),
+               });
+
+               const data = await response.json()
+               console.log("UserData: ", data)
+               setSpieler(data)
+            }
+            catch(err)
+            {
+              console.error ('There has been a problem with your fetch operation: ', err.message);
+            }
+
+
+
+          };
+
       fetchData();
+      fetchUserData();
     }, []);
 
 
