@@ -84,17 +84,17 @@ const PokemonCard = () => {
                     <li>Sp. Defense: {pokemonList.base['Sp. Defense']}</li>
                     <li>Speed: {pokemonList.base.Speed}</li>
                   </ul>
-                  <div className="flex flex-wrap justify-center items-center h-full mb-40">
+                  <div className="flex flex-wrap justify-start items-center mt-40">
                     
                     <button style={{color: "black"}} onClick={() => navigate(-1)}>Back</button>
-                    <div>
+                    
                    
                     <button style={{color: "black"}} onClick={() => handlePokemonClick(pokemonList)}>
                           Select Pokemon
                         </button>
                         <button style={{color: "black"}} onClick={() => handlePokemonClick2()}>
                           Show Pokemon
-                        </button>
+                        </button><div>
                         {showPopup && selectedPokemon && (
                         <div className="fixed inset-0  bg-gray-900 opacity-70 z-50 flex-col items-center justify-center w-85 h-80">
                           <h2 className="mb-5"> Selected Pokemon </h2>
