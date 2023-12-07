@@ -77,7 +77,7 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
     
     <div>
         <Head> 
-        <title>Pokemon Liste</title>
+        <title>Pokedex</title>
         </Head>
         
         <div className="pokedexContainer flex-wrap gap-10">
