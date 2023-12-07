@@ -10,7 +10,8 @@ const [page, setPage] = useState(0);
 const [isLoading, setIsLoading] = useState(true);
 // const [filter, setFilter] = useState(['Bug','Grass', 'Poison', 'Fire', 'Grass', 'Normal', 'Rock', 'Dark', 'Fairy', 'Flying', 'Ground', 'Poison', 'Steel', 'Dragon', 'Fighting', 'Ghost', 'Ice', 'Psychic', 'Water']);
 const [filter, setFilter] = useState('');
-const [showBackButton, setShowBackButton] = useState(false);
+// const [showBackButton, setShowBackButton] = useState(false);
+
 
 
 const pokemonsPerPage = 12;
@@ -82,7 +83,20 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
         <div>
         <h1 className="pb-4">Pokedex</h1>
         <div className="border border-gray-400 p-3 rounded-lg">
+        <div>
+        <div>
+     
+   </div>
         <h2 className="text-3xl text-left pb-5">Filters</h2>
+        {/* {showPopup && selectedPokemon && (
+                        <div className="fixed inset-0  bg-gray-900 opacity-70 z-50 flex-col items-center justify-center w-85 h-80">
+                          <h2 className="mb-5"> Selected Pokemon </h2>
+                          {selectedPokemon.name.french}
+                          <div className="flex justify-center h-40">{selectedPokemon.sprites && <img src={selectedPokemon.sprites.other.home.front_default} />}</div>
+                          <button style={{color: "black"}}  onClick={closePopup}>Close</button>
+                        </div>
+                        )} */}
+        </div> 
         <hr className="pb-5" />
         <ul className="text-2xl grid grid-cols-3 gap-6 ">
         <a className=" hover:text-yellow-100 focus:text-yellow-300 focus:font-bold hover:font-bold" href="#" onClick={() => handleFilterChange('Bug')}>Bug</a>
@@ -113,16 +127,14 @@ const totalPages = Math.ceil(totalPokemons / pokemonsPerPage);
         {page > 0 && <button className="text-lg text-white bg-black bg-opacity-60 border-white mr-2" onClick={() => setPage(page - 1)}>Back</button>}
         {page < totalPages - 1 && <button className="text-lg text-white bg-black bg-opacity-60 border-white" onClick={() => setPage(page + 1)}>Next</button>}
         </div>
-        {/* <button style={{color: "black"}} onClick={() => { if (page > 0) setPage(page - 1); {() => { setPage(page + 1);}} setShowBackButton(false); }}>Zurück</button>
-        <button style={{color: "black"}} onClick={() => { if (page < totalPages - 1) setPage(page + 1); setShowBackButton(true);  }}>Weiter</button>
-        {showBackButton && <button style={{color: "black"}} onClick={() => setPage(page - 1)}>Back</button>} */}
+        
         { isLoading ? (
           <div>Loading...</div>
           ) : (
             pokemonsForCurrentPage?.map((pokemon, id) =>
           (<a href={`/pokemon/${pokemon.id}`}><ul className="text-3xl border border-gray-400 p-3 rounded-lg" key={id}>
           <li>#{pokemon.id}</li>
-          <li>{pokemon.name.french}</li>
+          <li>{pokemon.name.english}</li>
           <div className="flex justify-center">{pokemon.sprites && <img src={pokemon.sprites.front_default} />}</div>
           <li>{pokemon.type}</li>
         </ul></a>)
