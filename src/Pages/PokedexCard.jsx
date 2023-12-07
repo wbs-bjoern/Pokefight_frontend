@@ -12,6 +12,9 @@ const PokemonCard = () => {
     //   Fetch JSON Pokemon-Liste vom Backend
     const navigate = useNavigate();
 
+    const [selectedPokemon, setSelectedPokemon] = useState(null);
+    const [showPopup, setShowPopup] = useState(false);
+
       useEffect(() => {
             const fetchData = async () => {
             setIsLoading(true);
@@ -36,7 +39,22 @@ const PokemonCard = () => {
       fetchData();
     }, [id]);
 
+    const handlePokemonClick = (pokemon) => {
+      setSelectedPokemon(pokemon);
+      console.log("pokemon select",pokemon)
+
+     };
+
+     const handlePokemonClick2 = () => {
+      
+
+      // console.log()
+      setShowPopup(true)
+     };
     
+     const closePopup = () => {
+      setShowPopup(false);
+     };
     
       return (
            
@@ -67,15 +85,37 @@ const PokemonCard = () => {
                     <li>Sp. Defense: {pokemonList.base['Sp. Defense']}</li>
                     <li>Speed: {pokemonList.base.Speed}</li>
                   </ul>
-                  <div className="flex justify-center items-center h-full mb-40">
-                    <button style={{color: "black"}}>Select Pokemon</button>
+                  <div className="flex flex-wrap justify-center items-center h-full mb-40">
+                    
                     <button style={{color: "black"}} onClick={() => navigate(-1)}>Back</button>
+                    <div>
+                   
+                    <button style={{color: "black"}} onClick={() => handlePokemonClick(pokemonList)}>
+                          Select Pokemon
+                        </button>
+                        <button style={{color: "black"}} onClick={() => handlePokemonClick2()}>
+                          Show Pokemon
+                        </button>
+                        {showPopup && selectedPokemon && (
+                        <div className="fixed inset-0  bg-gray-900 opacity-70 z-50 flex-col items-center justify-center w-85 h-80">
+                          <h2 className="mb-5"> Selected Pokemon </h2>
+                          {selectedPokemon.name.french}
+                          <div className="flex justify-center h-40">{selectedPokemon.sprites && <img src={selectedPokemon.sprites.other.home.front_default} />}</div>
+                          
+                        
+                          <button style={{color: "black"}}  onClick={closePopup}>Close</button>
+                        </div>
+                        )}
+
+                      
+                    </div>
                   </div>
             </div>
             
             <div className="flex-column">
            
-              <ul className="flex justify-center">
+              <ul className="flex justify-center flex-wrap">
+                    <h3 className="pr-4">weaknesses:</h3>
                     {pokemonList.damage_relations.double_damage_from.map((pokemon, index) => (
                     <li className="pr-4" key={index}>{pokemon.name}</li>
                     ))}
