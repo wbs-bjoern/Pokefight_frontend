@@ -10,7 +10,6 @@ import Fight from "./Pages/Fight";
 
 export const AuthContext = createContext({authToken: null, setAuthToken: ()=>{}});
 
-export const AuthContext = createContext({authToken: null, setAuthToken: ()=>{}});
 
 function App() {
   // const [count, setCount] = useState(0)
