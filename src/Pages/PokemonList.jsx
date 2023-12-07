@@ -1,8 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import Head from "../components/Head";
-
+import { AuthContext } from "../App";
 
 const PokemonList = () => {
+
+  const {authToken} = useContext(AuthContext)
+  console.log("AuthToken:", authToken)
 
 const [pokemonList, setPokemonList] = useState([])
 // const [lastId, setLastId] = useState(1);
