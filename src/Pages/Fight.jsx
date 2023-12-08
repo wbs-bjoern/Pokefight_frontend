@@ -2,7 +2,7 @@ import { useState, useEffect,useContext } from "react";
 import Head from "../components/Head";
 import { AuthContext } from "../App";
 
-    //   const baseURL = "http://localhost:8080/";
+      //gitconst baseURL = "http://localhost:8080/";
       const baseURL = "https://pokefight-backend-x2r5.onrender.com/";
 
 const Fight = () => {
@@ -20,9 +20,9 @@ const [buttonClicked, setButtonClicked] = useState(false);
 
 
 
-console.log(randomPokemon)
-console.log(spieler)
-console.log(startBattle)
+console.log("RandomUSer:" , randomPokemon)
+console.log("Spieler ",spieler)
+console.log("StartBattle", startBattle)
 
 
 // Fetching RandomPokemonSpieler
@@ -38,7 +38,7 @@ useEffect(() => {
             const json = await response.json();
             if (json && json.length > 0) {
                 const randomIndex = Math.floor(Math.random() * json.length);
-                setRandomPokemonSpieler(json[randomIndex]);
+                //setRandomPokemonSpieler(json[randomIndex]);
             }
         } catch (error) {
             console.error('There has been a problem with your fetch operation: ', error);
@@ -90,6 +90,13 @@ useEffect(() => {
                const data = await response.json()
                console.log("UserData: ", data)
                setSpieler(data)
+
+               if (data.ownedPokemon && data.ownedPokemon.length > 0) {
+                const randomIndex = Math.floor(Math.random() * data.ownedPokemon.length);
+                setRandomPokemonSpieler(data.ownedPokemon[randomIndex]);
+            }
+
+
             }
             catch(err)
             {
@@ -163,7 +170,7 @@ useEffect(() => {
               {startBattle && spieler && 
                 <p className="text-2xl mt-4 mb-4">
                 {startBattle.responseString.Winner.trainer === spieler.username 
-                    ? `${spieler.username}'s ${startBattle.responseString.Winner.pokemon} wins!`
+                    ? `${spieler.username}'s ${startBattle.responseString.Winner.pokemon} wins! ${startBattle.responseString.CatchAttempt}. ${startBattle.responseString.CatchResult}`
                     : `${spieler.username}'s  ${startBattle.responseString.Loser.pokemon} loses.`}
                 </p>
                 }
